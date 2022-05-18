@@ -2,9 +2,9 @@
 
 namespace Garethnic\EloquentCipher\Tests;
 
+use Garethnic\EloquentCipher\EloquentCipherServiceProvider;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Orchestra\Testbench\TestCase as Orchestra;
-use Garethnic\EloquentCipher\EloquentCipherServiceProvider;
 
 class TestCase extends Orchestra
 {

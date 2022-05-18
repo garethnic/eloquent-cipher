@@ -15,7 +15,7 @@ class GenerateKey extends Command
         {--show : Display key instead of modifying .env}
         {--force : For operation to run when in production}';
 
-    public $description = 'My command';
+    public $description = 'Generates a key for the CipherSweet engine.';
 
     public function handle(): int
     {

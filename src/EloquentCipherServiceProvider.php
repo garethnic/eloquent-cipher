@@ -31,12 +31,11 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
             ->hasCommand(GenerateKey::class);
     }
 
-    /**
-     * @return void
-     */
-    public function register()
+    public function registeringPackage()
     {
-        $this->app->singleton(CipherSweet::class, function () {
+        parent::registeringPackage();
+
+        $this->app->singleton(CipherSweet::class, function ($app) {
             $backend = $this->buildBackend();
 
             return new CipherSweet($this->buildKeyProvider($backend), $backend);
@@ -48,13 +47,10 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
      */
     protected function buildBackend(): BackendInterface
     {
-        switch (config('eloquent-cipher.backend')) {
-            case 'fips':
-                return new FIPSCrypto;
-            case 'nacl':
-            default:
-                return new ModernCrypto;
-        }
+        return match (config('eloquent-cipher.backend')) {
+            'fips' => new FIPSCrypto,
+            default => new ModernCrypto,
+        };
     }
 
     /**
@@ -64,17 +60,12 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
      */
     protected function buildKeyProvider(BackendInterface $backend): KeyProviderInterface
     {
-        switch (config('eloquent-cipher.provider')) {
-            case 'custom':
-                return $this->buildCustomKeyProvider();
-            case 'file':
-                return new FileProvider(config('eloquent-cipher.file.path'));
-            case 'string':
-                return new StringProvider(config('eloquent-cipher.string.key'));
-            case 'random':
-            default:
-                return new RandomProvider($backend);
-        }
+        return match (config('eloquent-cipher.provider')) {
+            'custom' => $this->buildCustomKeyProvider(),
+            'file' => new FileProvider(config('eloquent-cipher.file.path')),
+            'string' => new StringProvider(config('eloquent-cipher.string.key')),
+            default => new RandomProvider($backend),
+        };
     }
 
     /**

@@ -62,8 +62,8 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
     {
         return match (config('eloquent-cipher.provider')) {
             'custom' => $this->buildCustomKeyProvider(),
-            'file' => new FileProvider(config('eloquent-cipher.file.path')),
-            'string' => new StringProvider(config('eloquent-cipher.string.key')),
+            'file' => new FileProvider(config('eloquent-cipher.providers.file.path')),
+            'string' => new StringProvider(config('eloquent-cipher.providers.string.key')),
             default => new RandomProvider($backend),
         };
     }

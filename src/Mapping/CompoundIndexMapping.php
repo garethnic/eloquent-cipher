@@ -12,33 +12,16 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CompoundIndexMapping implements IndexMappingInterface
 {
-    /**
-     * @var string
-     */
-    private $table = '';
+    private string $table;
 
-    /**
-     * @var string
-     */
-    private $index = '';
+    private string $index;
 
-    /**
-     * @var string
-     */
-    private $target = '';
+    private string|null|Model $target;
 
-    /**
-     * @var string
-     */
-    private $property = '';
+    private string $property;
 
     /**
      * BlindIndexMapping constructor.
-     *
-     * @param string $table
-     * @param string $index
-     * @param Model|null $model
-     * @param string $property
      */
     public function __construct(
         string $table = '',

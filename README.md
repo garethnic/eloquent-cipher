@@ -110,12 +110,7 @@ php artisan ciphersweet:generate:key
 
 Once the configuration is done, you can begin using encrypted fields in your models.
 
-There are two ways to achieve this effect:
-
 ### CipherSweet Trait
-
-If this is not tenable due to existing object inheritance requirements, you may also
-simply use the `CipherSweet` trait, like so.
 
 ```php
 <?php

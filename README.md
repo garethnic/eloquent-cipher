@@ -152,7 +152,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Credits
 
 - [Gareth Nicholson](https://github.com/garethnic)
-- 
+
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

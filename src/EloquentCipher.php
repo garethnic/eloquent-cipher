@@ -32,7 +32,7 @@ trait EloquentCipher
 
         static::$cipherSweetEncryptedRow = new EncryptedRow(
             app(CipherSweetEngine::class),
-            (new static)->getTable()
+            (new static())->getTable()
         );
 
         static::configureCipherSweetFields(static::$cipherSweetEncryptedRow);
@@ -85,7 +85,7 @@ trait EloquentCipher
             $hashConfig = $configuration[4] ?? [];
 
             if (is_array($column)) {
-                $compoundIndex = new CompoundIndex($index, $column, (int) $filterBits, !$isSlow, $hashConfig);
+                $compoundIndex = new CompoundIndex($index, $column, (int) $filterBits, ! $isSlow, $hashConfig);
 
                 foreach ($transformations as $transformation) {
                     $compoundIndex->addRowTransform($transformation);
@@ -93,7 +93,7 @@ trait EloquentCipher
 
                 $encryptedRow->addCompoundIndex($compoundIndex);
             } else {
-                $encryptedRow->addBlindIndex($column, new BlindIndex($index, $transformations, (int) $filterBits, !$isSlow, $hashConfig));
+                $encryptedRow->addBlindIndex($column, new BlindIndex($index, $transformations, (int) $filterBits, ! $isSlow, $hashConfig));
             }
 
             static::$indexToField[$index] = $column;
@@ -206,7 +206,7 @@ trait EloquentCipher
     {
         /** @var CipherSweetEngine $engine */
         $engine = app(CipherSweetEngine::class);
-        $table = (new static)->getTable();
+        $table = (new static())->getTable();
 
         $types = [];
 

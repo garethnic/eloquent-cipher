@@ -1,24 +1,26 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "garethnic/eloquent-cipher",
+    "description": "Laravel and Ciphersweet integration",
     "keywords": [
-        ":vendor_name",
+        "garethnic",
         "laravel",
-        ":package_slug"
+        "eloquent-cipher"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/garethnic/eloquent-cipher",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
+            "name": "Gareth Nicholson",
+            "email": "gareth@io.co.za",
             "role": "Developer"
         }
     ],
     "require": {
-        "php": "^8.1",
-        "spatie/laravel-package-tools": "^1.9.2",
-        "illuminate/contracts": "^9.0"
+        "php": "8.*",
+        "illuminate/config": "^6.0|^7.0|^8.0|^9.0",
+        "illuminate/contracts": "^9.0",
+        "paragonie/ciphersweet": "^3.1",
+        "spatie/laravel-package-tools": "^1.9.2"
     },
     "require-dev": {
         "nunomaduro/collision": "^6.0",
@@ -34,13 +36,13 @@
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Garethnic\\EloquentCipher\\": "src",
+            "Garethnic\\EloquentCipher\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Garethnic\\EloquentCipher\\Tests\\": "tests"
         }
     },
     "scripts": {
@@ -49,15 +51,19 @@
         "test-coverage": "vendor/bin/pest --coverage"
     },
     "config": {
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "pestphp/pest-plugin": true,
+            "phpstan/extension-installer": true
+        }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Garethnic\\EloquentCipher\\EloquentCipherServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "EloquentCipher": "Garethnic\\EloquentCipher\\Facades\\EloquentCipher"
             }
         }
     },

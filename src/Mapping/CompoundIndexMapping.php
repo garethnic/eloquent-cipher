@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Garethnic\EloquentCipher\Mapping;
@@ -12,22 +13,22 @@ use Illuminate\Database\Eloquent\Model;
 class CompoundIndexMapping implements IndexMappingInterface
 {
     /**
-     * @var string $table
+     * @var string
      */
     private $table = '';
 
     /**
-     * @var string $index
+     * @var string
      */
     private $index = '';
 
     /**
-     * @var string $target
+     * @var string
      */
     private $target = '';
 
     /**
-     * @var string $property
+     * @var string
      */
     private $property = '';
 
@@ -57,10 +58,10 @@ class CompoundIndexMapping implements IndexMappingInterface
      */
     public function __invoke(array $indexes)
     {
-        if (!isset($indexes[$this->table][$this->index]['value'])) {
+        if (! isset($indexes[$this->table][$this->index]['value'])) {
             throw new \TypeError('Missing indexes on input array');
         }
-        if (!($this->target instanceof Model)) {
+        if (! ($this->target instanceof Model)) {
             throw new \TypeError('Target must be an Eloquent Model');
         }
         $this->target->{$this->property} = $indexes[$this->table][$this->index]['value'];

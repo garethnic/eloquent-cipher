@@ -50,10 +50,10 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
     {
         switch (config('eloquent-cipher.backend')) {
             case 'fips':
-                return new FIPSCrypto;
+                return new FIPSCrypto();
             case 'nacl':
             default:
-                return new ModernCrypto;
+                return new ModernCrypto();
         }
     }
 

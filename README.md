@@ -137,6 +137,8 @@ class Blah extends Model
 }
 ```
 
+Where `7` above refers to the filter bits which is very important to get right. Refer to [Blind Index Planning](https://ciphersweet.paragonie.com/php/blind-index-planning).  
+
 ## Testing
 
 ```bash

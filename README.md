@@ -118,12 +118,26 @@ simply use the `CipherSweet` trait, like so.
 
 ```php
 <?php
+use ParagonIE\CipherSweet\BlindIndex;
+use ParagonIE\CipherSweet\EncryptedRow;
 use Illuminate\Database\Eloquent\Model;
 use ParagonIE\EloquentCipherSweet\CipherSweet;
 
 class Blah extends Model
 {
     use CipherSweet;
+    
+    protected static function configureCipherSweet(EncryptedRow $encryptedRow)
+    {
+        return $encryptedRow
+            ->addTextField('id_number')
+            ->addBlindIndex('id_number', new BlindIndex('users_id_number_index_1', [], 7));
+    }
+
+    public function getTable()
+    {
+        return 'users';
+    }
 }
 ```
 
@@ -140,8 +154,7 @@ Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed re
 ## Credits
 
 - [Gareth Nicholson](https://github.com/garethnic)
-- [All Contributors](../../contributors)
-
+- 
 ## License
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.

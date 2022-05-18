@@ -48,8 +48,8 @@ class EloquentCipherServiceProvider extends PackageServiceProvider
     protected function buildBackend(): BackendInterface
     {
         return match (config('eloquent-cipher.backend')) {
-            'fips' => new FIPSCrypto,
-            default => new ModernCrypto,
+            'fips' => new FIPSCrypto(),
+            default => new ModernCrypto(),
         };
     }
 

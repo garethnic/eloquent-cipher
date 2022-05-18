@@ -14,6 +14,7 @@ Resources:
 - [CipherSweet Docs](https://ciphersweet.paragonie.com/)
 - [Building Searchable Encrypted Databases with PHP and SQL](https://paragonie.com/blog/2017/05/building-searchable-encrypted-databases-with-php-and-sql)
 - [CipherSweet: Searchable Encryption Doesn't Have to be Bitter](https://paragonie.com/blog/2019/01/ciphersweet-searchable-encryption-doesn-t-have-be-bitter)
+- [Blind Index Planning](https://ciphersweet.paragonie.com/php/blind-index-planning) **NB: Important**
 
 ## Installation
 

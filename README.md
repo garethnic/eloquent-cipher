@@ -103,9 +103,46 @@ return [
 
 ## Usage
 
+```
+php artisan ciphersweet:generate:key
+```
+
+Once the configuration is done, you can begin using encrypted fields in your models.
+
+There are two ways to achieve this effect:
+
+### EncryptedFieldModel Base Class
+
+The easiest way to use the features of the adapter is to ensure your models extend
+`EncryptedFieldModel` instead of the base `Model`.
+
+```diff
+<?php
+- use Illuminate\Database\Eloquent\Model;
++ use ParagonIE\EloquentCipherSweet\EncryptedFieldModel;
+
+- class Foo extends Model
++ class Foo extends EncryptedFieldModel
+```
+
+This automatically loads in the trait and boots it for you. If you use this in a base
+class, and some of your classes that inherit that base class *don't* need encrypted fields,
+you can simply leave them un-configured.
+
+### CipherSweet Trait
+
+If this is not tenable due to existing object inheritance requirements, you may also
+simply use the `CipherSweet` trait, like so.
+
 ```php
-$eloquentCipher = new Garethnic\EloquentCipher();
-echo $eloquentCipher->echoPhrase('Hello, Garethnic!');
+<?php
+use Illuminate\Database\Eloquent\Model;
+use ParagonIE\EloquentCipherSweet\CipherSweet;
+
+class Blah extends Model
+{
+    use CipherSweet;
+}
 ```
 
 ## Testing
